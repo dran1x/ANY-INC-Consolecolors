@@ -190,13 +190,15 @@ stock char szConsoleColoursCodes[][] =
 
 stock void CPrintToServer(char[] szMessage, any ...)
 {
-	for (int i = 0; i < sizeof(szConsoleColoursTags); i++)
-	{
-		ReplaceString(szMessage, 250, szConsoleColoursTags[i], szConsoleColoursCodes[i]);
-	}
+	SetGlobalTransTarget(LANG_SERVER);
 
 	char szOutput[PLATFORM_MAX_PATH];
 	VFormat(szOutput, sizeof(szOutput), szMessage, 2);
+
+	for (int i = 0; i < sizeof(szConsoleColoursTags); i++)
+	{
+		ReplaceString(szOutput, 250, szConsoleColoursTags[i], szConsoleColoursCodes[i]);
+	}
 
 	PrintToServer(szOutput);
 }
