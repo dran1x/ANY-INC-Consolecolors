@@ -190,7 +190,7 @@ stock char szConsoleColoursCodes[][] =
 
 stock void CPrintToServer(char[] szMessage, any ...)
 {
-	SetGlobalTransTarget(LANG_SERVER);
+	// SetGlobalTransTarget(LANG_SERVER);
 
 	char szOutput[PLATFORM_MAX_PATH];
 	VFormat(szOutput, sizeof(szOutput), szMessage, 2);
