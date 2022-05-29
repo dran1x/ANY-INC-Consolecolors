@@ -1,3 +1,7 @@
+#if !defined MAX_CONSOLE_LENGTH
+	#define MAX_CONSOLE_LENGTH 1024
+#endif
+
 stock char szConsoleColoursTags[][] =
 {
 	// Styles
@@ -190,15 +194,11 @@ stock char szConsoleColoursCodes[][] =
 
 stock void CPrintToServer(char[] szMessage, any ...)
 {
-	// SetGlobalTransTarget(LANG_SERVER);
-
-	char szOutput[PLATFORM_MAX_PATH];
+	char szOutput[MAX_CONSOLE_LENGTH];
 	VFormat(szOutput, sizeof(szOutput), szMessage, 2);
 
 	for (int i = 0; i < sizeof(szConsoleColoursTags); i++)
-	{
-		ReplaceString(szOutput, 250, szConsoleColoursTags[i], szConsoleColoursCodes[i]);
-	}
+		ReplaceString(szOutput, MAX_CONSOLE_LENGTH, szConsoleColoursTags[i], szConsoleColoursCodes[i]);
 
 	PrintToServer(szOutput);
 }
